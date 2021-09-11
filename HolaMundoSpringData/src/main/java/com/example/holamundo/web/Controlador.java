@@ -22,6 +22,12 @@ public class Controlador {
     public String inicio(Model model){
         ArrayList<Persona> personas= (ArrayList<Persona>) personaService.listarPersonas();
         model.addAttribute("personas",personas);
+        Double saldoTotal=0D;
+        for(Persona p: personas){
+            saldoTotal+= p.getSaldo();
+        }
+        model.addAttribute("saldoTotal",saldoTotal);
+        model.addAttribute("totalClientes",personas.size());
         return "index";
     }
 
